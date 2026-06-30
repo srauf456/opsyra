@@ -29,7 +29,7 @@ export default function ClientList({clients}: {clients : Client[] }){
           </button>
                             <button onClick={() => deleteClient(client.id)}>Delete</button>
                             {editClientId === client.id && (
-                                <EditClientForm client={client} />
+                                <EditClientForm client={client} onCancel={() => setEditClientId(null)} />
                             )}
                              
                 </li>

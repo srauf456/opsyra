@@ -7,12 +7,18 @@ type Client = {
     email: string | null
     company: string | null
 }
-export default function EditClientForm({client}: {client : Client}) {
+export default function EditClientForm({
+    client, 
+    onCancel
+}: {
+    client : Client
+    onCancel : () => void
+}) {
     const [formData, setFormData] = useState<Client>({
         id: client.id,
         name: client.name,
-        email: client.email,
-        company: client.company,
+        email: client.email ?? '',
+        company: client.company ?? '',
     })
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,11 +30,14 @@ export default function EditClientForm({client}: {client : Client}) {
         e.preventDefault();
         try{
             await editClient(client.id, formData)
+            onCancel()
         } catch(error){
             console.log(error)
         }
 
     }
+
+    
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -39,8 +48,8 @@ export default function EditClientForm({client}: {client : Client}) {
                     <input type="text" name="email" value={formData.email} onChange={handleChange} className="rounded"/>
                     <label>Company</label>
                     <input type="text" name="company" value={formData.company} onChange={handleChange} className="rounded"/>
-                    <button>Save</button>
-                    <button>Cancel</button>
+                    <button type="submit">Save</button>
+                    <button type="button" onClick={onCancel}>Cancel</button>
             </form>
         </div>
     )
