@@ -17,7 +17,7 @@ export default function ClientForm(){
         })
     }
 
-    const handleSubmit = async (e) =>{
+    const handleSubmit = async (e: React.ChangeEvent) =>{
         e.preventDefault()
         const result = await addClient(formData)
         if(result.error){

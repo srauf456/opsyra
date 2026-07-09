@@ -2,7 +2,7 @@
 import { deleteClient, editClient } from "./actions"
 import { useState } from "react"
 import EditClientForm from "./EditClientForm"
-type Client = {
+export type Client = {
     id: string
     name: string
     email: string | null

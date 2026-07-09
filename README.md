@@ -37,6 +37,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 OPSYRA
 
-An AI assisted client and project handling system for freelancers.
+An AI powered operations platform for freelancers.
 Opsyra helps freelancers manage clients, projects, tasks and notes in one workspace without leveraging AI to reduce admin work and improve 
 project organization.
