@@ -26,7 +26,6 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElemen
 }
 const handleSubmit = async (e: React.SyntheticEvent) =>{
     e.preventDefault()
-    console.log(formData)
     const result = await addProject(formData)
       if(result.error){
             setError(result.error)

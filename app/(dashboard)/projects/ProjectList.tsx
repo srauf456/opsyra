@@ -3,6 +3,7 @@ import { deleteProject, editProject } from "./actions"
 import { useState } from "react"
 import EditProjectForm from "./EditProjectForm"
 import { Client } from "../clients/ClientList"
+import Link from 'next/link'
 type Project = {
     id: string
     user_id: string 
@@ -32,6 +33,7 @@ export default function ProjectList({projects, clients} : {projects : Project[],
                         {editProjectId === project.id ? "Close" : "Edit"}
                       </button>
                                         <button onClick={() => deleteProject(project.id)}>Delete</button>
+                                        <Link href={`/projects/${project.id}/tasks`}> View Tasks</Link>
                                         {editProjectId === project.id && (
                                             <EditProjectForm project={project} onCancel={() => setEditProjectId(null)} clients={clients} />
                                         )}
