@@ -44,10 +44,9 @@ export async function deleteTask(id: string, projectId: string){
     revalidatePath(`/projects/${projectId}/tasks`)
 }
 
-export async function editTask(id: string, formData: { 
-   
+export async function editTask(id: string, projectId: string, formData: { 
     title: string
-    due_date: string
+    due_date: string | null
 }){
     const supabase = await createClient();
     const {data: {user}} = await supabase.auth.getUser()
@@ -57,6 +56,6 @@ export async function editTask(id: string, formData: {
         due_date : formData.due_date || null
     }).eq('id', id)
     if(error) return {error: error.message}
-    revalidatePath(`/projects/${id}/tasks`)
+    revalidatePath(`/projects/${projectId}/tasks`)
     return {success: true}
 }
