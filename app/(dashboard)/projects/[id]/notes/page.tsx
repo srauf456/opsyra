@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import NoteForm from "./NoteForm";
+import NoteList from "./NoteList";
 
 export default async function Notes({params} : {params: Promise<{id:string}>}) {
     const {id: projectId} = await params
@@ -12,6 +13,7 @@ export default async function Notes({params} : {params: Promise<{id:string}>}) {
     return (
         <div>
             <NoteForm projectId={projectId}/>
+            <NoteList notes={notes}/>
         </div>
     )
 }
