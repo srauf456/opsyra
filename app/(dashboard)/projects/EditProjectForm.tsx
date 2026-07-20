@@ -60,7 +60,7 @@ export default function EditProjectForm({
                         <option value={"paused"}>Paused</option>
                         <option value={"done"}>Done</option>
                     </select>
-                    <select name="client_id" value={formData.client_id} onChange={handleChange}>
+                    <select name="client_id" value={formData.client_id?? ''} onChange={handleChange}>
                     <option value="">No client</option>
                     {clients.map((client)=>(
                     <option key={client.id} value={client.id}>{client.name}</option>

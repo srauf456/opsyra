@@ -45,9 +45,9 @@ export default function EditClientForm({
                     <label>Name</label>
                     <input type="text" name="name" value={formData.name} onChange={handleChange} className="rounded"/>
                     <label>Email</label>
-                    <input type="text" name="email" value={formData.email} onChange={handleChange} className="rounded"/>
+                    <input type="text" name="email" value={formData.email?? ''} onChange={handleChange} className="rounded"/>
                     <label>Company</label>
-                    <input type="text" name="company" value={formData.company} onChange={handleChange} className="rounded"/>
+                    <input type="text" name="company" value={formData.company?? ''} onChange={handleChange} className="rounded"/>
                     <button type="submit">Save</button>
                     <button type="button" onClick={onCancel}>Cancel</button>
             </form>
