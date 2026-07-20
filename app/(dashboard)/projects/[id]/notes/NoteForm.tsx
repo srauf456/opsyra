@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/client";
 import { useState } from "react";
+import {addNote} from './actions'
 
 export default function NoteForm({projectId} : {projectId: string}){
     const [formData, setFormData] = useState({
@@ -16,8 +17,18 @@ export default function NoteForm({projectId} : {projectId: string}){
     })
 
     }
-    const handleSubmit = (e:React.SyntheticEvent) =>{
-        
+    const handleSubmit = async (e:React.SyntheticEvent) =>{
+       const result = await addNote(formData)
+       if(result.error){
+        setError(error)
+        return 
+       }
+       setFormData({
+        title: '',
+        content: '',
+        ai_summary: ''
+    })
+    setError(null)
     }
     return(
         <div>
