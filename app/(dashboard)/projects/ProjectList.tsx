@@ -4,7 +4,7 @@ import { useState } from "react"
 import EditProjectForm from "./EditProjectForm"
 import Link from 'next/link'
 import type { Project, Client } from "@/lib/supabase/types"
-export default function ProjectList({projects, clients} : {projects : Project[], clients: Client[]}){
+export default function ProjectList({projects, clients} : {projects : Project[], clients: {id: string, name: string}[]}){
     const [editProjectId, setEditProjectId] = useState<string|null>(null)
      const handleEditToggle= (projectId: string) => {
     setEditProjectId(editProjectId === projectId ? null : projectId);

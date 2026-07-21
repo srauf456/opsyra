@@ -7,7 +7,7 @@ type ProjectFormData = {
     title: string
     description: string
     status: 'active' | 'paused' | 'done'
-    due_date: string | null
+    due_date: string 
 }
 export default function EditProjectForm({
     project, 

@@ -20,8 +20,7 @@ export async function addClient(formData: {
         })
 
     if(error){
-            console.log(error) 
-            return
+            return {error: error.message}
         }
     revalidatePath('/clients')
     return {success: true}
