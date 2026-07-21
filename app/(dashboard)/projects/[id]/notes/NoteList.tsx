@@ -2,14 +2,7 @@
 import { useState } from "react"
 import EditNoteForm from "./EditNoteForm"
 import { deleteNote } from "./actions"
-export type Note = {
-    id: string
-    user_id: string 
-    project_id: string | null
-    title: string
-    content: string
-    ai_summary: string | null
-}
+import type { Note } from "@/lib/supabase/types"
 
 
 export default function NoteList({notes}: {notes: Note[]}){

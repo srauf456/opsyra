@@ -1,21 +1,20 @@
 'use client'
 import { SelectHTMLAttributes, useState } from "react";
 import { editProject } from "./actions";
-
+import { Project } from "@/lib/supabase/types";
 type ProjectFormData = {
     client_id: string | null
     title: string
     description: string
     status: 'active' | 'paused' | 'done'
-    due_date: string
-    id: string
+    due_date: string 
 }
 export default function EditProjectForm({
     project, 
     onCancel,
     clients
 }: {
-    project : ProjectFormData
+    project : Project
     onCancel : () => void
     clients: {id: string, name: string}[]
 }) {
@@ -24,8 +23,7 @@ export default function EditProjectForm({
         description: project.description,
         status : project.status,
         due_date: project.due_date ?? '',
-        client_id : project.client_id ?? '',
-        id: project.id
+        client_id : project.client_id ?? ''
     })
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {

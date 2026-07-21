@@ -9,7 +9,7 @@ export default function ClientForm(){
     })
     const [error, setError] = useState<string | null>(null)
     
-    const handleChange = (e) =>{
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
         const {name, value} = e.target;
         setFormData({
             ...formData,
@@ -17,7 +17,7 @@ export default function ClientForm(){
         })
     }
 
-    const handleSubmit = async (e: React.ChangeEvent) =>{
+    const handleSubmit = async (e: React.SyntheticEvent) =>{
         e.preventDefault()
         const result = await addClient(formData)
         if(result.error){

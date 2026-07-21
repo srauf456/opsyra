@@ -1,7 +1,8 @@
 'use client'
 import { useState } from "react"
 import { editNote } from "./actions"
-import { Note } from "./NoteList"
+import { Note } from "@/lib/supabase/types"
+
 type NoteFormData = {
     title: string
     content : string

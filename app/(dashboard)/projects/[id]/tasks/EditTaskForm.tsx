@@ -1,26 +1,23 @@
 'use client'
 import { SelectHTMLAttributes, useState } from "react";
 import { editTask } from "./actions";
+import { Task } from "@/lib/supabase/types";
 
 type TaskFormData = {
     title: string
-    due_date: string 
-    id: string
-    project_id: string
+    due_date: string
 }
 export default function EditTaskForm({
     task, 
     onCancel
 }: {
-    task : TaskFormData
+    task : Task
     onCancel : () => void
    
 }) {
     const [formData, setFormData] = useState<TaskFormData>({
         title: task.title,
-        due_date: task.due_date ?? '',
-        id: task.id,
-        project_id: task.project_id
+        due_date: task.due_date ?? ''
     })
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {

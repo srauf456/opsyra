@@ -2,12 +2,8 @@
 import { deleteClient, editClient } from "./actions"
 import { useState } from "react"
 import EditClientForm from "./EditClientForm"
-export type Client = {
-    id: string
-    name: string
-    email: string | null
-    company: string | null
-}
+import { Client } from "@/lib/supabase/types"
+
 export default function ClientList({clients}: {clients : Client[] }){
     const [editClientId, setEditClientId] = useState<string|null>(null);
     const handleEditToggle = (clientId: string) => {

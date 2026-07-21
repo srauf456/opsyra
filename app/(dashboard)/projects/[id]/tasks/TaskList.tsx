@@ -2,16 +2,7 @@
 import { useState } from "react"
 import { updateTaskStatus, deleteTask, editTask } from "./actions"
 import EditTaskForm from "./EditTaskForm"
-
-type Task = {
-    id: string
-    user_id: string 
-    project_id: string 
-    title: string
-    status: 'todo' | 'in_progress' | 'done'
-    due_date: string | null
-    ai_generated: boolean
-}
+import type { Task } from "@/lib/supabase/types"
 export default function TaskList({tasks} : {tasks : Task[]}){
     const [editTaskId, setEditTaskId] = useState<string|null>(null)
 

@@ -2,18 +2,9 @@
 import { deleteProject, editProject } from "./actions"
 import { useState } from "react"
 import EditProjectForm from "./EditProjectForm"
-import { Client } from "../clients/ClientList"
 import Link from 'next/link'
-type Project = {
-    id: string
-    user_id: string 
-    client_id: string | null
-    title: string
-    description: string
-    status: 'active' | 'paused' | 'done'
-    due_date: string
-}
-export default function ProjectList({projects, clients} : {projects : Project[], clients: Client[]}){
+import type { Project, Client } from "@/lib/supabase/types"
+export default function ProjectList({projects, clients} : {projects : Project[], clients: {id: string, name: string}[]}){
     const [editProjectId, setEditProjectId] = useState<string|null>(null)
      const handleEditToggle= (projectId: string) => {
     setEditProjectId(editProjectId === projectId ? null : projectId);

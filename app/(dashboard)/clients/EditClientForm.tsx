@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { editClient } from "./actions";
+import { Client } from "@/lib/supabase/types";
 
-type Client = {
-    id: string
+type ClientFormData = {
     name: string
-    email: string | null
-    company: string | null
+    email : string
+    company: string
+
 }
 export default function EditClientForm({
     client, 
@@ -14,8 +15,8 @@ export default function EditClientForm({
     client : Client
     onCancel : () => void
 }) {
-    const [formData, setFormData] = useState<Client>({
-        id: client.id,
+    const [formData, setFormData] = useState<ClientFormData>({
+        
         name: client.name,
         email: client.email ?? '',
         company: client.company ?? '',
