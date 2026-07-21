@@ -43,7 +43,7 @@ export async function editProject(id: string, formData: {
     title: string
     description: string
     status: 'active' | 'paused' | 'done'
-    due_date: string
+    due_date: string | null
 }){
     const supabase = await createClient();
     const {data: {user}} = await supabase.auth.getUser()
