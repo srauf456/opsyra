@@ -2,6 +2,7 @@
 //handle errors
 //pass data to view
 import { createClient } from "@/lib/supabase/server"
+import DashboardView from "./DashboardView"
 export default async function Dashboard(){
     const supabase = await createClient()
     const {count, error: clientError} = await supabase.from('clients').select('*', {count: 'exact', head: true})
@@ -33,19 +34,9 @@ export default async function Dashboard(){
     return(
         <div>
             <p>Welcome</p>
-            <p>Total clients: {count}</p>
-            <p>Active Projects:
-                {projectData?.map(project => project.title)}
-            </p>
-             <p>Pending Tasks:
-                {taskData?.map(task => task.title)}
-            </p>
-            <p>Recent Projects:
-                {recentProjectData?.map(recentProject => recentProject.title)}
-            </p>
-            <p>Upcoming Tasks:
-                {upcomingTaskData?.map(upcomingTask => upcomingTask.title)}
-            </p>
+            <DashboardView clientCount={count ?? 0} activeProjects={projectData ?? []} pendingTasks={taskData ?? []}
+            recentProjects={recentProjectData ?? []} upcomingTasks={upcomingTaskData ?? []} />
+           
         </div>
     )
 
