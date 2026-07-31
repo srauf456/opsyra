@@ -2,16 +2,11 @@ import Sidebar from "@/components/layout/Sidebar";
 
 export default function DashboardLayout({children}: {children: React.ReactNode}){
     return(
-    <html lang="en">
-      <body>
-        {/* Layout UI */}
-        {/* Place children where you want to render a page or nested layout */}
         <div>
             <Sidebar/>
+
+            <main>{children}</main>
         </div>
-        <main>{children}</main>
-      </body>
-    </html>
     
     )
 }
