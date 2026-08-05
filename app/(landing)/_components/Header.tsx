@@ -14,7 +14,7 @@ export default function Header(){
                 </nav>
                 <div className="flex items-center gap-4">
                     <Link href="/login" className="mx-3 block text-gray-900 px-4 py-2 text-sm font-semibold shadow-xs rounded-md hover:bg-gray-50">Login</Link>
-                    <Link href="/signup" className="bg-blue-600 text-white text-sm text-gray-900 px-4 py-2 font-medium font-semibold shadow-xs rounded-md hover:bg-blue-700">Get Started</Link>
+                    <Link href="/signup" className="bg-blue-800 text-white text-sm text-gray-900 px-4 py-2 font-medium font-semibold shadow-xs rounded-md hover:bg-blue-900">Get Started</Link>
                 </div>
                 </div>
             </div>
