@@ -1,6 +1,11 @@
 'use server'
 import { createClient } from "@/lib/supabase/server"
 import { revalidatePath } from "next/cache"
+import { GoogleGenAI } from "@google/genai"
+
+const ai = new GoogleGenAI({apiKey: process.env.GEMINI_API_KEY!})
+
+
 export async function addProject(formData:{
     title: string,
     description: string,
@@ -60,6 +65,34 @@ export async function editProject(id: string, formData: {
     return {success: true}
 }
 
+export async function generateTasks(projectId: string, title: string, description: string) {
+    const prompt = `Generate a list of actionable tasks for a project titled ${title} with the description: ${description}. 
+    Return ONLY a valid JSON array. No explanation, no markdown, no text outside the array.
+    Format: [{"title":"task_title", "status": "todo"}]`
+    const response = await ai.models.generateContent({
+        model: 'gemini-3.5-flash',
+        contents: prompt,
+    })
+    
+    const text = response.text || '[]'
+    const cleaned = text.replace(/```json|```/g, '').trim()
+    const tasksArray = JSON.parse(cleaned)
+    const supabase = await createClient()
+    const {data: {user}} = await supabase.auth.getUser()
+    if(!user) return 'Not authenticated'
+    const generatedTasks = tasksArray.map((task: {title: string, status: string}) =>({
+        title: task.title,
+        status: task.status,
+        project_id: projectId,
+        user_id: user.id,
+        ai_generated: true
+    }))
+    console.log(generatedTasks)
+    const {error} = await supabase.from('tasks').insert(generatedTasks)
+    if(error) return {error:error.message}
+    revalidatePath(`/projects/${projectId}/tasks`)
+    return {success: true}
+}
     
    
     
