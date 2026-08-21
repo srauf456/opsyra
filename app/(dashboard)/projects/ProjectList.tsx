@@ -34,11 +34,13 @@ export default function ProjectList({projects, clients} : {projects : Project[],
                 </button>
                 <button onClick={() => deleteProject(project.id)}>Delete</button>
                 <Link href={`/projects/${project.id}/tasks`}> View Tasks</Link>
+                <Link href={`projects/${project.id}/notes`}>View Notes</Link>
                 {editProjectId === project.id && (
                  <EditProjectForm project={project} onCancel={() => setEditProjectId(null)} clients={clients} />
                 
                 )}
                 <button onClick={()=>handleGenerate(project)} disabled={generating===project.id}>{generating===project.id ? 'Generating...' : 'Generate Tasks'}</button>
+                <button></button>
             </li>
 
         ))

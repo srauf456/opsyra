@@ -23,7 +23,10 @@ export default function TaskList({tasks} : {tasks : Task[]}){
                         <div>
                             <p>{task.title}</p>
                             <p>{task.due_date ?? 'No due date'}</p>
-                        </div>
+                        </div> 
+                        {task.ai_generated && (
+                            <span className="text-xs bg-purple-100 text-purple-700 rounded-full">AI</span>
+                        )}
                          <button onClick={() => handleEditToggle(task.id)}>
                         {editTaskId === task.id ? "Close" : "Edit"}
                       </button>
@@ -33,6 +36,7 @@ export default function TaskList({tasks} : {tasks : Task[]}){
                          {editTaskId === task.id && (
                             <EditTaskForm task={task} onCancel={() => setEditTaskId(null)} />
                         )}
+                       
                     </li>
                 ))}
             </ul>
