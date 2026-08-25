@@ -40,7 +40,7 @@ export default function ProjectList({projects, clients} : {projects : Project[],
                 
                 )}
                 <button onClick={()=>handleGenerate(project)} disabled={generating===project.id}>{generating===project.id ? 'Generating...' : 'Generate Tasks'}</button>
-                <button></button>
+                
             </li>
 
         ))

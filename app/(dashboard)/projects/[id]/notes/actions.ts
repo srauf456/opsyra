@@ -1,8 +1,9 @@
 'use server'
 import { createClient } from "@/lib/supabase/server"
 import { revalidatePath } from "next/cache"
+import { GoogleGenAI } from "@google/genai"
 
-
+const ai = new GoogleGenAI({apiKey: process.env.GEMINI_API_KEY! })
 export async function addNote(projectId: string, formData:{
         title: string
         content: string
@@ -52,5 +53,24 @@ export async function deleteNote(id: string){
         const {error} = await supabase.from('notes').delete().eq('id', id)
         if(error) return {error: error.message}
         revalidatePath('/notes')
+        return {success: true}
+}
+
+export async function summarizeNote(noteId: string, projectId : string, title: string, content: string){
+        const supabase = await createClient()
+        const {data: {user}} = await supabase.auth.getUser()
+        if(!user) return {error: 'Not authenticated'}
+        const prompt = `You are a productivity assistant for freelancers. Summarize the following note in 2-3 sentences. Focus on 
+        key points and action items. Return ONLY a plain text string. No markdown, no bullet points, no extra formatting.
+        Note title : "${title}"
+        Note content: "${content}"`
+        const response = await ai.models.generateContent({
+                model:'gemini-3.5-flash',
+                contents: prompt
+        })
+        const summary = response.text || ''
+        const {error} = await supabase.from('notes').update({'ai_summary': summary}).eq('id', noteId)
+        if(error) return {error: error.message}
+        revalidatePath(`/projects/${projectId}/notes`)
         return {success: true}
 }

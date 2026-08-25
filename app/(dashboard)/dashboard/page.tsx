@@ -4,6 +4,7 @@
 import { createClient } from "@/lib/supabase/server"
 import DashboardView from "./DashboardView"
 export default async function Dashboard(){
+    
     const supabase = await createClient()
     const {count, error: clientError} = await supabase.from('clients').select('*', {count: 'exact', head: true})
     if(clientError){
@@ -31,12 +32,12 @@ export default async function Dashboard(){
             console.log(upcomingTaskDataError)
             return
         }
+    
     return(
         <div>
             <p>Welcome</p>
             <DashboardView clientCount={count ?? 0} activeProjects={projectData ?? []} pendingTasks={taskData ?? []}
             recentProjects={recentProjectData ?? []} upcomingTasks={upcomingTaskData ?? []} />
-           
         </div>
     )
 
