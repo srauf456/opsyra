@@ -5,6 +5,8 @@ import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation' 
 import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
+import { RiSparklingLine,RiAlertLine } from 'react-icons/ri'
+import Link from 'next/link'
 
 export default function LoginPage() {
   const [fullName, setFullName] = useState('')  
@@ -43,7 +45,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="p-6 flex flex-col gap-3 max-w-sm">
+    <div className="min-h-screen bg-zinc-950 p-6 flex flex-col justify-center items-center px-4 overflow-hidden gap-3 max-w-sm">
       <Input
         placeholder="Email"
         value={email}
@@ -59,7 +61,7 @@ export default function LoginPage() {
         
       />
 
-      <Button onClick={handleSignup} className="bg-green-500 text-white p-2">
+      <Button onClick={handleSignup} className="w-full p-2">
        {loading ? 'Creating account...' : 'Create Account'}
       </Button>
     </div>

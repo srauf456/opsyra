@@ -10,12 +10,12 @@ export const Button = ({children, variant = 'primary', className, ...rest} : But
     switch(variant){
         
         case 'secondary':
-            return 'bg-gray-300 text-black';
+            return 'bg-gray-300 text-black border border-zinc-700/50'
         case 'danger':
-            return 'bg-red-500 text-white';
+            return 'bg-red-500 text-white border border-zinc-700/50'
         case 'primary':
         default:
-            return 'bg-gray-800 text-white';
+            return 'bg-zinc-100 text-zinc-950 hover:bg-white border border-zinc-700/50';
     }
  };
 
