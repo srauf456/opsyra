@@ -20,28 +20,28 @@ export default function Hero(){
             </div>
        
             
-          <div className="mt-14 rounded-xl border border-zinc-800 bg-zinc-900/60 p-2 shadow-2xl backdrop-blur">
-            <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-4 text-left font-mono text-xs text-zinc-400">
+          <div className="mt-14 rounded-xl border border-gray-800 bg-white p-2 shadow-2xl backdrop-blur">
+            <div className="rounded-lg border border-zinc-800 bg-white-950 p-4 text-left font-mono text-xs text-zinc-400">
               <div className="flex items-center gap-2 pb-3 border-b border-zinc-800 text-zinc-500">
-              <span className="size-2.5 rounded-full bg-zinc-800" />
-              <span className="size-2.5 rounded-full bg-zinc-800" />
-              <span className="size-2.5 rounded-full bg-zinc-800" />
+              <span className="size-2.5 rounded-full bg-gray-800" />
+              <span className="size-2.5 rounded-full bg-gray-800" />
+              <span className="size-2.5 rounded-full bg-gray-800" />
               <span className="ml-2 text-zinc-600 font-sans text-[11px]">workspace.opsyra.app</span>
             </div>
             <div className="pt-4 grid grid-cols-4 gap-3">
-              <div className="p-3 bg-zinc-900/80 rounded border border-zinc-800/80">
+              <div className="p-3 bg-gray-200 rounded border border-zinc-800/80">
                 <span className="text-zinc-500 text-[10px] block">Total Clients</span>
                 <span className="text-zinc-100 text-base font-semibold">1</span>
               </div>
-              <div className="p-3 bg-zinc-900/80 rounded border border-zinc-800/80">
+              <div className="p-3 bg-zinc-200 rounded border border-zinc-800/80">
                 <span className="text-zinc-500 text-[10px] block">Active Projects</span>
                 <span className="text-emerald-400 text-base font-semibold">2</span>
               </div>
-              <div className="p-3 bg-zinc-900/80 rounded border border-zinc-800/80">
+              <div className="p-3 bg-zinc-200 rounded border border-zinc-800/80">
                 <span className="text-zinc-500 text-[10px] block">Tasks Due Today</span>
                 <span className="text-amber-400 text-base font-semibold">26</span>
               </div>
-              <div className="p-3 bg-zinc-900/80 rounded border border-zinc-800/80">
+              <div className="p-3 bg-zinc-200 rounded border border-zinc-800/80">
                 <span className="text-zinc-500 text-[10px] block">Upcoming Tasks</span>
                 <span className="text-amber-400 text-base font-semibold">0</span>
               </div>

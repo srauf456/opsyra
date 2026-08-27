@@ -2,6 +2,7 @@
 import { Project, Task } from "@/lib/supabase/types"
 import { StatCard } from "@/components/dashboard/StatCard"
 import { Card } from "@/components/ui/Card"
+import { Button } from "@/components/ui/Button"
 import { weeklyReview } from "./actions"
 import { useState } from "react"
 
@@ -32,15 +33,50 @@ export default function DashboardView({clientCount, activeProjects, recentProjec
         doc.save('weekly-review.pdf')
     }
     return(
+        <div className="space-y-6">
+            <div className="flex items-center justify-between">
         <div>
+          <h1 className="text-xl font-semibold text-gray-900">Dashboard</h1>
+          <p className="text-sm text-gray-500 mt-0.5">Here's what's happening with your work.</p>
+        </div>
+        <Button onClick={handleWeeklyReview} isLoading={loading} variant="secondary">
+          Generate Weekly Review
+        </Button>
+      </div>
         <div className="grid grid-cols-4 gap-4 mb-8">
              <StatCard title="Total clients" value={clientCount} />
              <StatCard title="Active Projects" value={activeProjects.length} />
              <StatCard title="Pending Tasks" value={pendingTasks.length} />
              <StatCard title="Upcoming Tasks" value={upcomingTasks.length} />
         </div>
-        <div>
-            <p>:
+        <div className="grid grid-cols-2 gap-4">
+                   <Card>
+                <h3 className="font-semibold text-gray-900 mb-3">Recent Projects</h3>
+                {recentProjects.length === 0? (
+                    <p className="text-sm text-gray-400">No projects yet</p>
+                ) : (
+                    <ul className="space-y-2">
+                        {recentProjects?.map(recentProject =>(
+                    <li key={recentProject.id} className="flex items-center justify-between">
+                        <span className="text-sm text-gray-700">{recentProject.title}</span>
+                        <span className={`text-xs ${recentProject.status === 'active' ? 'bg-green-50 text-green-700' :
+                            recentProject.status === 'paused' ? 'bg-yellow-50 text-yellow-700' :
+                            'bg-gray-100 text-gray-500'
+                        }`}>{recentProject.status}
+                        </span>
+                        </li>
+                ))}
+                    </ul>
+                )}
+                
+                </Card>
+                     <Card>
+                <h3 className="text-gray-700">Upcoming Tasks</h3>
+                {upcomingTasks?.map(upcomingTask =>(
+                    <p key={upcomingTask.id}>{upcomingTask.title}</p>
+                ))}
+                </Card>
+                <p>:
                 {activeProjects?.map(project => (
                     <p key={project.id}>{project.title}</p>
                 ))}
@@ -50,21 +86,10 @@ export default function DashboardView({clientCount, activeProjects, recentProjec
                     <p key={task.id}>{task.title}</p>
                 ))}
             </p>
-            <Card>
-                <h3 className="text-gray-700">Recent Projects</h3>
-                {recentProjects?.map(recentProject =>(
-                    <p key={recentProject.id}>{recentProject.title}</p>
-                ))}
-                </Card>
-             <Card>
-                <h3 className="text-gray-700">Upcoming Tasks</h3>
-                {upcomingTasks?.map(upcomingTask =>(
-                    <p key={upcomingTask.id}>{upcomingTask.title}</p>
-                ))}
-                </Card>
+     
+        
             
         </div>
-         <button onClick={handleWeeklyReview} disabled={loading}>{loading ? "Generating..." : "Generate Weekly Review"}</button>
          {report && (
             <div>
                 <p className="whitespace-pre-wrap">{report}</p>

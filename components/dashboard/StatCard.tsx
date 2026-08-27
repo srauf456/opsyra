@@ -6,8 +6,8 @@ export function StatCard({title, value}:{
 }){
     return(
         <Card>
-            <h3 className="text-sm text-gray-500">{title}</h3>
-            <p className="text-xl text-gray-900">{value}</p>
+            <p className="text-xs font-medium uppercase text-gray-500">{title}</p>
+            <p className="text-2xl text-gray-900 mt-1">{value}</p>
         </Card>
     )
 }

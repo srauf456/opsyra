@@ -1,25 +1,28 @@
-type ButtonProps = {
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     children: React.ReactNode;
     onClick?: () => void;
     variant?: 'primary' | 'secondary' | 'danger';
     className?: string;
+    isLoading?: boolean
 }
 
-export const Button = ({children, variant = 'primary', className, ...rest} : ButtonProps) => {
+export const Button = ({children, variant = 'primary', className, isLoading, disabled, ...rest} : ButtonProps) => {
     const getVariantStyle = ()=>{
     switch(variant){
         
         case 'secondary':
-            return 'bg-gray-300 text-black border border-zinc-700/50'
+            return 'bg-white text-gray-700 border border-gray-700/50 hover:bg-gray-50'
         case 'danger':
-            return 'bg-red-500 text-white border border-zinc-700/50'
+            return 'bg-red-500 text-white border border-gray-700/50 hover:bg-red-600'
         case 'primary':
         default:
-            return 'bg-zinc-100 text-zinc-950 hover:bg-white border border-zinc-700/50';
+            return 'bg-blue-600 text-white hover:bg-blue-700 border border-gray700/50 shadow-sm';
     }
  };
 
  return(
-    <button className={`px-3 py-1 rounded ${getVariantStyle()} ${className || ''}`} {...rest} >{children}</button>
+    <button disabled={isLoading || disabled}
+    className={`px-3 py-1 rounded-lg text-sm font-medium transition disabled:opacity-50 disabled:cursor-not-allowed
+         ${getVariantStyle()} ${className || ''}`} {...rest} >{isLoading? 'Loading...' : children}</button>
  )
 };
