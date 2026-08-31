@@ -8,7 +8,6 @@ import { useState } from "react"
 
 interface DashboardViewProps {
     clientCount: number,
-    activeProjects : Project[],
     recentProjects: Project[],
     pendingTasks : Task[],
     upcomingTasks: Task[];
@@ -16,7 +15,7 @@ interface DashboardViewProps {
 
 
 
-export default function DashboardView({clientCount, activeProjects, recentProjects, pendingTasks, upcomingTasks} : DashboardViewProps){
+export default function DashboardView({clientCount, recentProjects, pendingTasks, upcomingTasks} : DashboardViewProps){
     const [loading, setLoading] = useState(false)
     const [report, setReport] = useState<null|string>(null)
     const handleWeeklyReview = async () => {
@@ -45,12 +44,11 @@ export default function DashboardView({clientCount, activeProjects, recentProjec
       </div>
         <div className="grid grid-cols-4 gap-4 mb-8">
              <StatCard title="Total clients" value={clientCount} />
-             <StatCard title="Active Projects" value={activeProjects.length} />
              <StatCard title="Pending Tasks" value={pendingTasks.length} />
              <StatCard title="Upcoming Tasks" value={upcomingTasks.length} />
         </div>
         <div className="grid grid-cols-2 gap-4">
-                   <Card>
+            <Card>
                 <h3 className="font-semibold text-gray-900 mb-3">Recent Projects</h3>
                 {recentProjects.length === 0? (
                     <p className="text-sm text-gray-400">No projects yet</p>
@@ -69,32 +67,46 @@ export default function DashboardView({clientCount, activeProjects, recentProjec
                     </ul>
                 )}
                 
-                </Card>
-                     <Card>
+            </Card>
+            <Card>
+                <h3 className="font-semibold text-gray-900 mb-3">Pending Tasks</h3>
+                {pendingTasks.length === 0? (<p className="text-sm text-gray-400">No pending tasks</p>
+                ) : 
+                <ul className="space-y-2">
+                {pendingTasks?.map(pendingTask => (
+                    <li key={pendingTask.id}>
+                    <span className="text-sm text-gray-700">{pendingTask.title}</span>
+                    <span className="text-xs text-gray-400">{pendingTask.due_date}</span></li>
+                )
+                )}</ul>
+                }
+                
+            </Card>
+            <Card>
                 <h3 className="text-gray-700">Upcoming Tasks</h3>
-                {upcomingTasks?.map(upcomingTask =>(
-                    <p key={upcomingTask.id}>{upcomingTask.title}</p>
-                ))}
-                </Card>
-                <p>:
-                {activeProjects?.map(project => (
-                    <p key={project.id}>{project.title}</p>
-                ))}
-            </p>
-             <p>:
-                {pendingTasks?.map(task =>(
-                    <p key={task.id}>{task.title}</p>
-                ))}
-            </p>
-     
-        
+                {upcomingTasks.length === 0? (<p className="text-sm text-gray-400">No upcoming tasks yet</p>
+                ) : 
+                <ul className="space-y-2">
+                {upcomingTasks?.map(upcomingTask => (
+                    <li key={upcomingTask.id}>
+                    <span className="text-sm text-gray-700">{upcomingTask.title}</span>
+                    <span className="text-xs text-gray-400">{upcomingTask.due_date}</span></li>
+                )
+                )}</ul>
+                }
+                
+            </Card>
             
         </div>
          {report && (
-            <div>
-                <p className="whitespace-pre-wrap">{report}</p>
-                <button onClick={handleDownload}>Download PDF</button>
+            <Card>
+            <div className="flex mb-4 items-center justify-between">
+                <h3>Weekly Review</h3>
+                
+                <Button onClick={handleDownload}>Download PDF</Button>
+                <p className="text-sm text-gray-700 whitespace-pre-wrap">{report}</p>
                 </div>
+            </Card>
          )}
         </div>
             

@@ -6,6 +6,8 @@
 import { createClient } from '@/lib/supabase/server'
 import ProjectList from './ProjectList'
 import ProjectForm from './ProjectForm'
+import { Card } from "@/components/ui/Card"
+import { Button } from "@/components/ui/Button"
 
 export default async function Projects(){
     //form the connection to db
@@ -22,8 +24,9 @@ export default async function Projects(){
     }
     
     return(
-        <div>
-            <h1>Projects</h1>
+        <div className='space-y-6'>
+            <h1 className='text-xl font-semibold text-gray-900'>Projects</h1>
+            <p className='text-sm text-gray-500 mt-0.5'>Manage your projects</p>
             <ProjectList projects={projects??[]} clients={clients??[] }/>
             <ProjectForm clients={clients??[]}/>
         </div>

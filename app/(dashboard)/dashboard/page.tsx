@@ -16,7 +16,7 @@ export default async function Dashboard(){
         console.error(projectError)
         return
     }
-    const {data: taskData, error: taskError} = await supabase.from('tasks').select('*').in('status', ['in_progress', 'todo'])
+    const {data: taskData, error: taskError} = await supabase.from('tasks').select('*').in('status', ['in_progress', 'todo']).limit(5)
     if(taskError){
         console.log(taskError)
         return
@@ -36,7 +36,7 @@ export default async function Dashboard(){
     return(
         <div>
             <p>Welcome</p>
-            <DashboardView clientCount={count ?? 0} activeProjects={projectData ?? []} pendingTasks={taskData ?? []}
+            <DashboardView clientCount={count ?? 0} pendingTasks={taskData ?? []}
             recentProjects={recentProjectData ?? []} upcomingTasks={upcomingTaskData ?? []} />
         </div>
     )
