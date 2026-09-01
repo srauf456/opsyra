@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { editClient } from "./actions";
 import { Client } from "@/lib/supabase/types";
+import { Button } from "@/components/ui/Button";
 
 type ClientFormData = {
     name: string
@@ -41,7 +42,7 @@ export default function EditClientForm({
     
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                 <h2>Edit Client</h2>
                     <label>Name</label>
                     <input type="text" name="name" value={formData.name} onChange={handleChange} className="rounded"/>
@@ -49,8 +50,10 @@ export default function EditClientForm({
                     <input type="text" name="email" value={formData.email?? ''} onChange={handleChange} className="rounded"/>
                     <label>Company</label>
                     <input type="text" name="company" value={formData.company?? ''} onChange={handleChange} className="rounded"/>
-                    <button type="submit">Save</button>
-                    <button type="button" onClick={onCancel}>Cancel</button>
+                    <div className="flex gap-2">
+                    <Button type="submit">Save</Button>
+                    <Button type="button" variant="danger" onClick={onCancel}>Cancel</Button>
+                    </div>
             </form>
         </div>
     )

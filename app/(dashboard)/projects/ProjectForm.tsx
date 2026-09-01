@@ -1,6 +1,9 @@
 'use client'
 import { useState } from "react"
 import {addProject} from "./actions"
+
+import { Card } from "@/components/ui/Card"
+import { Button } from "@/components/ui/Button"
 //receive clients array through props
 //formData uses useState
 //handleChange for inputs
@@ -15,6 +18,7 @@ export default function ProjectForm({clients}: { clients: {id:string, name: stri
     })
 
     const [error, setError] = useState<string|null>(null)
+        const [loading, setLoading] = useState(false)
 
 const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>{
     
@@ -36,27 +40,27 @@ const handleSubmit = async (e: React.SyntheticEvent) =>{
         }
 
 return(
-    <div>
-        <h1>Add A Project</h1>
-        <form onSubmit={handleSubmit}>
-            <input type="text" name="title" value={formData.title} onChange={handleChange} className="border p-2 rounded-md text-black bg-white"/>
-            <textarea name="description" value={formData.description} onChange={handleChange} className="border p-2 rounded-md text-black bg-white"/>
+    <Card>
+        <h1 className="text-sm font-semibold text-gray-900 mb-4">Add A Project</h1>
+        {error && <p className="text-xs text-red-500 mb-3">{error}</p>}
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+            <input type="text" placeholder="Title" name="title" value={formData.title} onChange={handleChange} className="border p-2 rounded-md text-black bg-white"/>
+            <textarea name="description" placeholder='Description' value={formData.description} onChange={handleChange} className="border p-2 rounded-md text-black bg-white"/>
             <select name="status" id="status" onChange={handleChange} className="border p-2 rounded-md text-black bg-white">
                 <option value={"active"}>Active</option>
                 <option value={"paused"}>Paused</option>
                 <option value={"done"}>Done</option>
                 </select>  
-            <input type="date" name="due_date" value={formData.due_date} onChange={handleChange} className="border p-2 rounded-md text-black bg-white"/>
+            <input type="date"name="due_date" value={formData.due_date} onChange={handleChange} className="border p-2 rounded-md text-black bg-white"/>
             <select name="client_id" value={formData.client_id} onChange={handleChange}>
                 <option value="">No client</option>
                 {clients.map((client)=>(
                     <option key={client.id} value={client.id}>{client.name}</option>
                 ))}
                 </select> 
-
-            <button type="submit">Add</button>
+            <Button type="submit" isLoading={loading} className="self-start">Add</Button>
         </form>
-    </div>
+    </Card>
 )
 
 

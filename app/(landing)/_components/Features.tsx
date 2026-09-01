@@ -6,7 +6,7 @@ export default function Features(){
         <div className="grid grid-cols-3 gap-10 mt-16">
         <div className="relative pl-16">
           <h3 className="text-base/7 font-semibold text-gray-900">
-            <div className="absolute top-0 left-0 flex size-10 items-center justify-center rounded-lg bg-blue-600">
+            <div className="absolute top-0 left-0 flex size-10 items-center justify-center rounded-lg bg-blue-800">
             <MdOutlinePerson className="size-6 text-white"/>
             </div>
             Client Management
@@ -15,7 +15,7 @@ export default function Features(){
         </div>
         <div className="relative pl-16">
           <h3 className="text-base/7 font-semibold text-gray-900">
-            <div className="absolute top-0 left-0 flex size-10 items-center justify-center rounded-lg bg-blue-600">
+            <div className="absolute top-0 left-0 flex size-10 items-center justify-center rounded-lg bg-blue-800">
               <MdOutlineTimer className="size-6 text-white"/>
             </div>
             
@@ -25,7 +25,7 @@ export default function Features(){
         </div>
         <div className="relative pl-16">
           <h3 className="text-base/7 font-semibold text-gray-900">
-            <div className="absolute top-0 left-0 flex size-10 items-center justify-center rounded-lg bg-blue-600">
+            <div className="absolute top-0 left-0 flex size-10 items-center justify-center rounded-lg bg-blue-800">
               <MdAutoAwesome className="size-6 text-white"/>
             </div>
             

@@ -4,8 +4,11 @@
 import { createClient } from "@/lib/supabase/server"
 import DashboardView from "./DashboardView"
 export default async function Dashboard(){
+    const today = new Date().toISOString().split('T')[0]
     
     const supabase = await createClient()
+    const {data: {user}} = await supabase.auth.getUser()
+    console.log(user)
     const {count, error: clientError} = await supabase.from('clients').select('*', {count: 'exact', head: true})
     if(clientError){
         console.error(clientError)
@@ -16,13 +19,13 @@ export default async function Dashboard(){
         console.error(projectError)
         return
     }
-    const {data: taskData, error: taskError} = await supabase.from('tasks').select('*').in('status', ['in_progress', 'todo'])
+    const {data: taskData, error: taskError} = await supabase.from('tasks').select('*').in('status', ['in_progress', 'todo']).eq('due_date', today)
     if(taskError){
         console.log(taskError)
         return
     }
     const {data: recentProjectData, error: recentProjectDataError} = await supabase.from('projects').select('*').order('created_at',
-        {ascending: false}).limit(3)
+        {ascending: false}).limit(5)
         if(recentProjectDataError){
             console.log(recentProjectDataError)
             return
@@ -35,8 +38,8 @@ export default async function Dashboard(){
     
     return(
         <div>
-            <p>Welcome</p>
-            <DashboardView clientCount={count ?? 0} activeProjects={projectData ?? []} pendingTasks={taskData ?? []}
+            <p>Welcome <span className="text-xs text-indigo-700">{user?.email}</span></p>
+            <DashboardView clientCount={count ?? 0} pendingTasks={taskData ?? []}
             recentProjects={recentProjectData ?? []} upcomingTasks={upcomingTaskData ?? []} />
         </div>
     )

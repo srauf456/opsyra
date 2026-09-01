@@ -45,7 +45,16 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950 p-6 flex flex-col justify-center items-center px-4 overflow-hidden gap-3 max-w-sm">
+    <div className="min-h-screen bg-white flex flex-col justify-center items-center px-4 overflow-hidden gap-3">
+      <div className='w-full max-w-sm bg-white border border-gray-300 rounded-2xl p-8 space-y-6'>
+
+         <div className="text-center space-y-1">
+          <div className="inline-flex items-center gap-2 mb-2">
+       
+             <span className="font-semibold text-blue-900 tracking-tight text-xl">Opsyra</span>
+             </div>
+             </div>
+      <div className='p-6 flex flex-col gap-3 max-w-sm'>
       <Input
         placeholder="Email"
         value={email}
@@ -64,6 +73,15 @@ export default function LoginPage() {
       <Button onClick={handleSignup} className="w-full p-2">
        {loading ? 'Creating account...' : 'Create Account'}
       </Button>
+      </div>
+
+          <div className="text-center text-xs text-gray-500 pt-2 border-t border-gray-200">
+          Already have an account?{' '}
+          <Link href="/login" className="text-gray-900 hover:text-gray underline underline-offset-4">
+            Log in
+          </Link>
+        </div>
+    </div>
     </div>
   )
 }
