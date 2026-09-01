@@ -5,7 +5,7 @@ export default function Header(){
             <div className="max-w-7xl mx-auto px-4 py-4">
                 <div className="flex justify-between items-center">
                     <div>
-                        <Link href={'/'} className="text-xl font-bold text-gray-900">Opsyra</Link>
+                        <Link href={'/'} className="text-xl font-bold text-blue-800">Opsyra</Link>
                 </div>
                 <nav className="flex gap-5">
                     <Link href="#features" className="text-sm text-gray-600 hover:text-gray-900" >Features</Link>

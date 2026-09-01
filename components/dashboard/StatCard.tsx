@@ -7,7 +7,7 @@ export function StatCard({title, value}:{
     return(
         <Card>
             <p className="text-xs font-medium uppercase text-gray-500">{title}</p>
-            <p className="text-2xl text-gray-900 mt-1">{value}</p>
+            <p className="text-2xl text-gray-900 mt-1 text-base font-semibold">{value}</p>
         </Card>
     )
 }

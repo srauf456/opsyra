@@ -50,13 +50,11 @@ export default function LoginPage() {
 
          <div className="text-center space-y-1">
           <div className="inline-flex items-center gap-2 mb-2">
-        <div className="size-6 rounded bg-indigo-500/20 border border-indigo-500/40 flex items-center justify-center text-indigo-400">
-              <RiSparklingLine className="size-3.5" />
-            </div>
-             <span className="font-semibold text-blue-900 tracking-tight">Opsyra</span>
+       
+             <span className="font-semibold text-blue-900 tracking-tight text-xl">Opsyra</span>
              </div>
              </div>
-      <div className='space-y-4'>
+      <div className='p-6 flex flex-col gap-3 max-w-sm'>
       <Input
         placeholder="Email"
         value={email}

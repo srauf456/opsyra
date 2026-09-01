@@ -16,7 +16,7 @@ export const Button = ({children, variant = 'primary', className, isLoading, dis
             return 'bg-red-500 text-white border border-gray-700/50 hover:bg-red-600'
         case 'primary':
         default:
-            return 'bg-blue-600 text-white hover:bg-blue-700 border border-gray700/50 shadow-sm';
+            return 'bg-blue-800 text-white hover:bg-blue-700 border border-gray700/50 shadow-sm';
     }
  };
 

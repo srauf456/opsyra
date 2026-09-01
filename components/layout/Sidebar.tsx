@@ -1,27 +1,28 @@
 
 'use client'
-import { MdSpaceDashboard, MdPeople, MdFolderOpen } from "react-icons/md";
+import { MdSpaceDashboard, MdPeople, MdFolderOpen, MdSettings, MdMenu, MdClose } from "react-icons/md";
 import Link from 'next/link'
 import { usePathname } from "next/navigation";
 
 const links = [
         {href: '/dashboard', label: 'Dashboard', icon: MdSpaceDashboard},
         {href: '/clients', label: 'Clients', icon: MdPeople},
-        {href: '/projects', label: 'Projects', icon: MdFolderOpen}
-        //settings
+        {href: '/projects', label: 'Projects', icon: MdFolderOpen},
+        {href: '/settings' , label: 'Settings', icon: MdSettings}//settings
     ]
 
-export default function Sidebar(){
+export default function Sidebar({onClose}: {onClose?: () => void }){
     
     const pathname = usePathname()
 return(
     <aside className="w-56 flex flex-col min-h-screen border-r border-gray-200 bg-white">
         <div className="h-16 flex items-center gap-2.5 border-b border-gray-200">
-            <div className="rounded bg-blue-600 size-7 flex gap-2 items-center justify-center">
-                 
-                <MdSpaceDashboard className="mt-6 size-4 text-white"/>
-                <span className="font-semibold text-gray-900">Opsyra</span>
-            </div>
+                 <div className="flex items-center justify-center px-4">
+                <h2 className="font-semibold text-gray-900">Opsyra</h2>
+       </div>
+       {onClose && (
+        <button onClick={onClose} className="lg:hidden p-1 rounded text-gray-400"><MdClose className="size-5"/></button>
+       )}
         </div>
         <nav className="flex flex-col gap-1 flex-1 p-4 mt-10">
             {links.map(({href, label, icon: Icon})=>{

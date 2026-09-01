@@ -44,7 +44,7 @@ export default function DashboardView({clientCount, recentProjects, pendingTasks
       </div>
         <div className="grid grid-cols-4 gap-4 mb-8">
              <StatCard title="Total clients" value={clientCount} />
-             <StatCard title="Pending Tasks" value={pendingTasks.length} />
+             <StatCard title="Pending Tasks Today" value={pendingTasks.length} />
              <StatCard title="Upcoming Tasks" value={upcomingTasks.length} />
         </div>
         <div className="grid grid-cols-2 gap-4">
