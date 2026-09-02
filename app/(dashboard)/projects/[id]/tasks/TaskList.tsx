@@ -3,6 +3,7 @@ import { useState } from "react"
 import { updateTaskStatus, deleteTask, editTask } from "./actions"
 import EditTaskForm from "./EditTaskForm"
 import type { Task } from "@/lib/supabase/types"
+import { Button } from "@/components/ui/Button"
 export default function TaskList({tasks} : {tasks : Task[]}){
     const [editTaskId, setEditTaskId] = useState<string|null>(null)
 
@@ -17,7 +18,7 @@ export default function TaskList({tasks} : {tasks : Task[]}){
     } as const
     return (
         <div>
-            <ul>
+            <ul className="space-y-4">
                 {tasks.map((task) => (
                     <li key={task.id}>
                         <div>
@@ -27,12 +28,12 @@ export default function TaskList({tasks} : {tasks : Task[]}){
                         {task.ai_generated && (
                             <span className="text-xs bg-purple-100 text-purple-700 rounded-full">AI</span>
                         )}
-                         <button onClick={() => handleEditToggle(task.id)}>
+                         <Button onClick={() => handleEditToggle(task.id)}>
                         {editTaskId === task.id ? "Close" : "Edit"}
-                      </button>
-                        <button onClick={()=> updateTaskStatus(task.id, nextStatus[task.status])}>{task.status}</button>
+                      </Button>
+                        <Button onClick={()=> updateTaskStatus(task.id, nextStatus[task.status])}>{task.status}</Button>
                         
-                        <button onClick={()=>deleteTask(task.id, task.project_id)}>Delete Task</button>
+                        <Button onClick={()=>deleteTask(task.id, task.project_id)}>Delete Task</Button>
                          {editTaskId === task.id && (
                             <EditTaskForm task={task} onCancel={() => setEditTaskId(null)} />
                         )}
