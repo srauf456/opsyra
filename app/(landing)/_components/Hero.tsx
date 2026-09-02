@@ -15,7 +15,7 @@ export default function Hero(){
        
                 <div className="mt-10 flex items-center justify-center gap-x-6">
                   <Link href="/signup" className="rounded-md bg-blue-900 px-4 py-2.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">Start Free Workspace <RiArrowRightLine/></Link>
-                  <Link href="#demo" className="text-sm/6 font-semibold text-gray-900">View Demo</Link>
+                  <Link href="/demo" className="text-sm/6 font-semibold text-gray-900">View Demo</Link>
                 </div>
             </div>
        

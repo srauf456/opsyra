@@ -9,7 +9,7 @@ export default function Header(){
                 </div>
                 <nav className="flex gap-5">
                     <Link href="#features" className="text-sm text-gray-600 hover:text-gray-900" >Features</Link>
-                    <Link href="#demo" className="text-sm text-gray-600 hover:text-gray-900">Demo</Link>
+                    <Link href={'/demo'} className="text-sm text-gray-600 hover:text-gray-900">Demo</Link>
                     <Link href="#contact" className="text-sm text-gray-600 hover:text-gray-900">Contact</Link>
                 </nav>
                 <div className="flex items-center gap-4">
