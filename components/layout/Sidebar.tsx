@@ -1,8 +1,11 @@
 
 'use client'
-import { MdSpaceDashboard, MdPeople, MdFolderOpen, MdSettings, MdMenu, MdClose } from "react-icons/md";
+import { MdSpaceDashboard, MdPeople, MdFolderOpen, MdSettings, MdMenu, MdClose, MdLogout } from "react-icons/md";
 import Link from 'next/link'
 import { usePathname } from "next/navigation";
+import { useRouter } from 'next/navigation';
+import { createClient } from '@/lib/supabase/client'
+import { Button } from "../ui/Button";
 
 const links = [
         {href: '/dashboard', label: 'Dashboard', icon: MdSpaceDashboard},
@@ -14,6 +17,15 @@ const links = [
 export default function Sidebar({onClose}: {onClose?: () => void }){
     
     const pathname = usePathname()
+    const router = useRouter()
+    const supabase = createClient()
+
+    const handleLogout = async () => {
+        await supabase.auth.signOut()
+        router.push('/')
+        router.refresh()
+
+    }
 return(
     <aside className="w-56 flex flex-col min-h-screen border-r border-gray-200 bg-white">
         <div className="h-16 flex items-center gap-2.5 border-b border-gray-200">
@@ -37,7 +49,8 @@ return(
 })}
         </nav>
         <div className="p-4 border-t border-gray-200">
-            <p className="text-xs text-gray-400 font-medium">Opsyra · {new Date().getFullYear()}</p>
+            <Button onClick={handleLogout} className="flex items-center gap-2"><MdLogout className="size-4"/>Sign Out</Button>
+            <p className="p-2 items-center flex text-xs text-gray-400 font-medium">Opsyra · {new Date().getFullYear()}</p>
         </div>
     </aside>
 )
